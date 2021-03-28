@@ -14,7 +14,7 @@ $candaraFont: 'Candara';
     // background-color: red;
     height: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
   }
 }
 button.btnLogin {
@@ -107,10 +107,16 @@ button.btnLogin {
           color: $black;
           a{
             color: $purple;
-            font-weight: bold;
+            font-weight: bolder;
           }
         }
       }
     }
   }
+}
+
+.ant-col.ant-col-16{
+
+  max-width: 100%!important;
+  width: 100%!important;
 }
