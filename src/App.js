@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Login from './views/Login/Login'
+import Login from './views/Login/Login';
+import Main from './views/Main/Main';
 
 const logedIn = ()=>{
 
@@ -11,5 +12,5 @@ const logedIn = ()=>{
 
 export default function App() {
   // console.log(logedIn())
-  return logedIn() ? (<></>) : (<><Login /></>); 
+  return logedIn() ? (<><Main /></>) : (<><Login /></>); 
 }

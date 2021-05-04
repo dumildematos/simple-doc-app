@@ -37,6 +37,10 @@ ipcMain.on('notify', (event, message)=> {
 
 })
 
+ipcMain.on('userLogin', (event, data) => {
+    console.log({user: data})
+})
+
 app.whenReady().then(createWindow).catch((e) => {
     console.error(e)
 })

@@ -6,5 +6,10 @@ contextBridge.exposeInMainWorld('electron', {
       // console.log(message)
       ipcRenderer.sendSync('notify', message)
     }
+  },
+  loginAPI: {
+    sendData(data){
+      ipcRenderer.sendSync('userLogin', data)
+    }
   }
 })
