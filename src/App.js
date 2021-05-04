@@ -1,12 +1,15 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Login from './views/Login/Login'
+
+const logedIn = ()=>{
+
+  let user = localStorage.getItem('user')
+
+  return user ? true : false;
+}
+
 export default function App() {
-  return (
-    <>
-    {/* <h1>App component again </h1>
-    <button>Notify</button> */}
-    <Login />
-    </>
-  )
+  // console.log(logedIn())
+  return logedIn() ? (<></>) : (<><Login /></>); 
 }

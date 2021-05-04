@@ -1,0 +1,106 @@
+@import "~bootstrap/scss/bootstrap";
+$purple: rgb(76, 95, 225);
+$black: rgb(112, 112, 112);
+$mainBackColor: #F7F7F7;
+$berlinFont: 'Berlin Sans FB';
+$candaraFont: 'Candara';
+
+.main-container{
+  font-family: $candaraFont;
+  color: $black;
+  background-color: $mainBackColor;
+  overflow: hidden;
+  height: 100%;
+  margin: 0;
+  max-width: 100%!important;
+  .row{
+    display: flex!important;
+    height: 100%;
+    .col{
+      height: 100%!important;
+      &:nth-child(1) {
+        display: flex;
+        align-items: center;
+        .container{
+          .row{
+            .col-header{
+              header{
+                h1{
+                  color: $berlinFont;
+                  color: $black;
+                  b{
+                    color: $purple;
+                  }
+                }
+              }
+              p{
+                color: #707070;
+              }
+            }
+          }
+        }
+      }
+      &:nth-child(2){
+        background-color: $purple;
+      }
+    }
+  }
+}
+input{
+  border-radius: 3px;
+}
+#btn-login{
+  background: linear-gradient(#6474E4, #4C5FE1)!important;
+  border: none;
+
+}
+.social-login{
+  button {
+    margin: 5px;
+    border: none;
+   &:nth-child(1){
+     background-color: #0A66C2;
+   }
+   &:nth-child(2){
+    background-color: #395693;
+  }
+  &:nth-child(3){
+    background-color: #DD4B39;
+  }
+  }
+}
+.sign-up{
+  span{
+    color: $black;
+    a{
+      color: $purple!important;
+      font-weight: bolder;
+    }
+  }
+}
+.fold-container{
+  background-color: $purple;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  .fold-content{
+    display: inline-block;
+    width: 100%;
+    height: 100% *2;
+    border-radius: 20px;
+    &:nth-child(1){
+      margin-left: 20%!important;
+      margin-top: -5%;
+      transform: rotate(170deg);
+      background-color: blue;
+      // animation: fold 10s infinite cubic-bezier(1,.015,.295,1.225) forwards;
+    }
+  }
+}
+
+// @keyframes fold {
+//   0%,  15% { margin-top: 0%; margin-left: 0%; background-color: black;}
+// 	25%, 40% { margin-top: 20%; margin-left: 10%;transform: rotate(200deg); background-color: orangered; }
+// 	// 50%, 65% { transform: translateZ(-145px) rotateY(-144deg); }
+// 	75%, 90% {  margin-left: 10%; transform: translateX(-145px) rotateY(-216deg); }
+// }

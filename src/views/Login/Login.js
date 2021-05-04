@@ -1,129 +1,123 @@
-import React, { useState } from 'react'
-import { Layout, Row, Col, Form, Input, Button, Checkbox , Space  } from 'antd';
-const {  Content,  } = Layout;
-import { LinkedinFilled, FacebookFilled, GoogleSquareFilled } from '@ant-design/icons';
-import 'antd/dist/antd.css';
-import './../../scss/views/Login.scss';
-
-
-const layout = {
-  labelCol: {
-    span: 16,
-  },
-  wrapperCol: {
-    span: 16,
-  },
-};
-const tailLayout = {
-  wrapperCol: {
-    offset: 0,
-    span: 16,
-  },
-};
-
+import React, { useState } from 'react';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import { FaLinkedinIn, FaFacebookF, FaGoogle } from 'react-icons/fa';
+import Carousel from 'react-bootstrap/Carousel'
+import './../../scss/views/_login.scss';
 
 
 const  Login = () => {
 
-  const onFinish = (values) => {
-    console.log('Success:', values);
-  };
-
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
-  
-
-
   return (
     <>
-      <Layout style={{ height: '100%' }}>
-        <Content
-          className="site-layout-background"
-          style={{
-            padding: 24,
-            margin: 0,
-            minHeight: 280,
-            height: '100%'
-          }}
-        >
-          <Row>
-          <Space align="baseline">
-            <Col span={12} xs={{ order: 12 }} sm={{ order: 12 }} md={{ order: 12 }} lg={{ order: 12 }}>
-            <div className='loginFormHeader'>
-              <div className='logo'>
-                <h3>Simple <b>Doc</b></h3>
-              </div>
-              <p>
-              Documente seus produtos, serviços, processos e muito mais de forma  fácil e ágil.
-              </p>
-            </div>
-            <Form
-                {...layout}
-                name="loginForm"
-                layout="vertical"
-                initialValues={{
-                  remember: true,
-                }}
-                onFinish={onFinish}
-                onFinishFailed={onFinishFailed}
-              >
-                <Form.Item
-                  label="E-mail:"
-                  name="email"
-                  rules={[
-                    {
-                      required: true,
-                      message: 'Digite o seu email!',
-                      type:'email'
-                    },
-                  ]}
-                >
-                  <Input placeholder="jhondoe@email.com" />
-                </Form.Item>
+      <Container className="main-container">
+        <Row xs={2} md={2} lg={2}>
+          <Col xs={6} className="col">
+            <Container>
+              <Row xs={2} md={2} lg={2}>
+                <Col xs={12}  className="col-header">
+                  <header>
+                    <h1>Simple <b>Doc</b></h1>
+                  </header>
+                  <p>
+                  Documente seus produtos, serviços, processos e muito mais de forma  fácil e ágil.
+                  </p>
+                </Col>
+              </Row>
+              <Row xs={2} md={2} lg={2}>
+                <Col xs={12}>
+                  <Form>
+                  <Form.Group controlId="formBasicEmail">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control type="email" placeholder="Enter email" />
+                    <Form.Text className="text-muted">
+                      We'll never share your email with anyone else.
+                    </Form.Text>
+                  </Form.Group>
 
-                <Form.Item
-                  label="Palavra-passe"
-                  name="password"
-                  rules={[
-                    {
-                      required: true,
-                      message: 'Digite sua Palavra-passe!',
-                    },
-                  ]}
-                >
-                  <Input.Password placeholder="************"/>
-                </Form.Item>
-
-                <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-                  <Checkbox>Remember me</Checkbox>
-                </Form.Item>
-
-                <Form.Item {...tailLayout}>
-                  <Button className='btnLogin' htmlType="submit" block>
-                    Entrar
+                  <Form.Group controlId="formBasicPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control type="password" placeholder="Password" />
+                  </Form.Group>
+                  <Form.Group controlId="formBasicCheckbox">
+                    <Form.Check type="checkbox" label="Check me out" />
+                  </Form.Group>
+                  <Button variant="primary" size="lg" block id="btn-login" type="submit">
+                    Submit
                   </Button>
-                </Form.Item>
-              </Form>
-              <div className='loginSocialMedia'>
-                  <p>ou</p>
-                  <div>
-                  <Button className='btnLinkedin' type="primary" icon={<LinkedinFilled />} size='large'></Button>
-                  <Button className='btnFacebook' type="primary" icon={<FacebookFilled />} size='large'></Button>
-                  <Button className='btngPlus' type="primary" icon={<GoogleSquareFilled />} size='large'></Button>
-                  </div>
-              </div>
-              <div className='signInCall'>
-                <p>Ainda não tem uma conta? <a href="!#">Registra-se</a></p>
-              </div>
-            </Col>
-            <Col span={6} xs={{ order: 6 }} sm={{ order: 6 }} md={{ order: 6 }} lg={{ order: 6 }}>
-              4 col-order-responsive
-            </Col>
-          </Space>
-          </Row>
-        </Content>
-      </Layout>
+                  </Form>
+                </Col>
+              </Row>
+              <Row >
+                <Col xs={6}>
+                  <p className="text-center">or</p>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={6} className="d-flex justify-content-center social-login">
+                  <Button><FaLinkedinIn/></Button>{' '}
+                  <Button><FaFacebookF/></Button>{' '}
+                  <Button><FaGoogle/></Button>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={6} className="p-10 sign-up">
+                  <span>Ainda não tem uma conta,  <a> Registra-se</a></span>
+                </Col>
+              </Row>
+            </Container>
+          </Col>
+          <Col xs={6} className="col">
+
+            {/* <div className="fold-container">
+                <div className="fold-content">
+                    <div className="fold_item"></div>
+                </div>
+            </div> */}
+            <Container>
+              <Carousel>
+                <Carousel.Item interval={1000}>
+                  <img
+                    className="d-block w-100"
+                    src="holder.js/800x400?text=First slide&bg=373940"
+                    alt="First slide"
+                  />
+                  <Carousel.Caption>
+                    <h3>First slide label</h3>
+                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                  </Carousel.Caption>
+                </Carousel.Item>
+                <Carousel.Item interval={500}>
+                  <img
+                    className="d-block w-100"
+                    src="holder.js/800x400?text=Second slide&bg=282c34"
+                    alt="Second slide"
+                  />
+                  <Carousel.Caption>
+                    <h3>Second slide label</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                  </Carousel.Caption>
+                </Carousel.Item>
+                <Carousel.Item>
+                  <img
+                    className="d-block w-100"
+                    src="holder.js/800x400?text=Third slide&bg=20232a"
+                    alt="Third slide"
+                  />
+                  <Carousel.Caption>
+                    <h3>Third slide label</h3>
+                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                  </Carousel.Caption>
+                </Carousel.Item>
+              </Carousel>
+            </Container>
+
+          </Col>
+        </Row>
+      </Container>
     </>
   )
 }

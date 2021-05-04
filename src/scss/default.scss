@@ -1,8 +1,13 @@
 @charset "UTF-8";
+$theme-colors: (
+    "info": tomato,
+    "danger": teal
+);
 body{
   background: rgb(240,242,245);
   #root{
     background: '#F7F7F7';
+    height: 100vh;
   }
 }
 
@@ -41,5 +46,5 @@ body{
   'themes/default';
 
 // 8. Views
-@import 'views/Login.scss'
+@import 'views/login'
 
