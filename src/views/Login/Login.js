@@ -35,7 +35,8 @@ const  Login = () => {
         if(res.status === 200){
           Swal.hideLoading();
           localStorage.setItem('user', JSON.stringify(res.data))
-          window.location.reload();
+          // window.location.reload();
+          electron.loginAPI.sendData(res.data);
         }
       }
     })

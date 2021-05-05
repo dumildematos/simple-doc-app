@@ -3,8 +3,9 @@ const path = require('path');
 
 const envDev = !app.isPackaged;
 
+let win ;
 function createWindow() {
-    const win = new BrowserWindow({
+    win = new BrowserWindow({
         width: 1200,
         heigth: 800,
         backgroundColor: 'white',
@@ -15,7 +16,6 @@ function createWindow() {
             preload: path.join(__dirname,'preload.js')
         }
     });
-
     win.loadFile('index.html');
 }
 
@@ -39,6 +39,21 @@ ipcMain.on('notify', (event, message)=> {
 
 ipcMain.on('userLogin', (event, data) => {
     console.log({user: data})
+    if(data){
+        console.log({win: win})
+        win = new BrowserWindow({
+            width: 1200,
+            heigth: 800,
+            backgroundColor: 'white',
+            webPreferences: {
+                nodeIntegration: false,
+                worldSafeExecuteJavaScript: true,
+                contextIsolation: true,
+                preload: path.join(__dirname,'preload.js')
+            }
+        });
+        win.loadFile('index.html');
+    }
 })
 
 app.whenReady().then(createWindow).catch((e) => {
