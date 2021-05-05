@@ -1,4 +1,32 @@
+$purple: rgb(76, 95, 225);
 .main-component{
     // background-color: red!important;
     height: 100%;
+}
+.teams-card{
+    .ant-card-actions{
+        li {
+            span{
+                svg{
+                    font-size: 1rem;
+
+                }
+                span{
+                    margin-left: 2%;
+                    font-size: .8rem;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}
+.open-creat-team-modal{
+    position: fixed;
+    top: 90%;
+    right: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $purple!important;
+    border: none;
 }

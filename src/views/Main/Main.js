@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import { Layout, Menu, Breadcrumb, Skeleton, Switch, Card, Avatar, Row, Col, Slider } from 'antd';
+import { Layout, Menu, Breadcrumb, Skeleton, Switch, Card, Avatar, Row, Col, Slider, Divider , Button} from 'antd';
 import 'antd/dist/antd.css';
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
+import { EditOutlined, EllipsisOutlined, SettingOutlined, PlusOutlined } from '@ant-design/icons';
 import { FaUsers } from 'react-icons/fa';
 import { IoDocuments } from "react-icons/io5";
 
@@ -35,22 +35,29 @@ function Main() {
                 <Breadcrumb.Item>List</Breadcrumb.Item>
                 <Breadcrumb.Item>App</Breadcrumb.Item>
             </Breadcrumb> */}
-               <Row>
-      <Col span={6} order={4}>
-        1 col-order-4
-      </Col>
-      <Col span={6} order={3}>
-        2 col-order-3
-      </Col>
-      <Col span={6} order={2}>
-        3 col-order-2
-      </Col>
-      <Col span={6} order={1}>
-        4 col-order-1
-      </Col>
-    </Row>
+
             <div className="site-layout-content">
                 
+            <Row>
+                <Col span={6} order={4}>
+                    1 col-order-4
+                </Col>
+                <Col span={6} order={3}>
+                    2 col-order-3
+                </Col>
+                <Col span={6} order={2}>
+                    3 col-order-2
+                </Col>
+                <Col span={6} order={1}>
+                    4 col-order-1
+                </Col>
+            </Row>
+
+            <Divider style={{ borderWidth: 2 }} />
+
+            <Breadcrumb style={{ margin: '16px 0' }}>
+                <Breadcrumb.Item>Criadas Por mim</Breadcrumb.Item>
+            </Breadcrumb>
                 <Switch checked={!loading} onChange={onChange} />
 
                 {/* <Row >
@@ -63,15 +70,13 @@ function Main() {
       <Card
                 style={{ width: 300, marginTop: 16 }}
                 actions={[
-                    [<FaUsers /> , 45 ],
-                    [<IoDocuments />, 45],
+                    [<FaUsers /> , <span>46</span> ],
+                    [<IoDocuments />,  <span>46</span>],
                 ]}
+                className="teams-card"
                 >
-                <Skeleton loading={loading} avatar active>
+                <Skeleton loading={loading} active>
                     <Meta
-                    avatar={
-                        <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                    }
                     title="Card title"
                     description="This is the description"
                     />
@@ -140,10 +145,14 @@ function Main() {
       </Col>
     </Row>
 
+    <Breadcrumb style={{ margin: '16px 0' }}>
+                <Breadcrumb.Item>Convites de participação</Breadcrumb.Item>
+            </Breadcrumb>
                 
 
             </div>
             </Content>
+            <Button className="open-creat-team-modal" type="primary" shape="circle" icon={<PlusOutlined />} size="large" />
             <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
         </Layout>
         </>
