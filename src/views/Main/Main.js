@@ -1,23 +1,55 @@
 import React, {useState} from 'react';
-import { Layout, Menu, Breadcrumb, Skeleton, Switch, Card, Avatar, Row, Col, Slider, Divider , Button} from 'antd';
+import { Layout, Menu, Breadcrumb,Input, Space, Skeleton, Switch, Card, Avatar, Row, Col, Slider, Divider , Button} from 'antd';
 import 'antd/dist/antd.css';
-import { EditOutlined, EllipsisOutlined, SettingOutlined, PlusOutlined } from '@ant-design/icons';
+import { EditOutlined, EllipsisOutlined, AudioOutlined , PlusOutlined } from '@ant-design/icons';
 import { FaUsers } from 'react-icons/fa';
 import { IoDocuments } from "react-icons/io5";
-
+import Axious from 'axios';
 const { Header, Content, Footer } = Layout;
 const { Meta } = Card;
 
-let state 
+const { Search } = Input;
+
+
+
 
 function Main() {
-
     const [loading, setLoading] = useState({});
+    const [teams, setTeams] = useState({});
+
 
     const onChange = (checked) => {
         setLoading({loading: !checked})
     }
+    const loadTeams = () => {
+        Axious.get('https://jsonplaceholder.typicode.com/posts')
+        .then(res => {
+            if(res.status == 200){
+                setTeams({teams: res.data});
+            }
+            // console.log(teams)
+        })
+        .catch(error=>{
+            console.log(error)
+        })
+    }
+    window.onload = () => {
 
+        loadTeams();
+    }
+    const teamArray = [
+        {id: 1, title: "Here", desc: "description"}, 
+        {id: 1, title: "Here", desc: "description"},
+        {id: 1, title: "Here", desc: "description"},
+        {id: 1, title: "Here", desc: "description"},
+        {id: 1, title: "Here", desc: "description"},
+        {id: 1, title: "Here", desc: "description"},
+        {id: 1, title: "Here", desc: "description"},
+
+    ]
+ 
+    const onSearch = (value) => console.log(value);
+    console.log(teams.teams)
     return (
         <>
         <Layout className="layout main-component">
@@ -30,26 +62,12 @@ function Main() {
             </Menu>
             </Header>
             <Content style={{ padding: '0 50px' }}>
-            {/* <Breadcrumb style={{ margin: '16px 0' }}>
-                <Breadcrumb.Item>Home</Breadcrumb.Item>
-                <Breadcrumb.Item>List</Breadcrumb.Item>
-                <Breadcrumb.Item>App</Breadcrumb.Item>
-            </Breadcrumb> */}
-
             <div className="site-layout-content">
                 
-            <Row>
-                <Col span={6} order={4}>
-                    1 col-order-4
-                </Col>
-                <Col span={6} order={3}>
-                    2 col-order-3
-                </Col>
-                <Col span={6} order={2}>
-                    3 col-order-2
-                </Col>
-                <Col span={6} order={1}>
-                    4 col-order-1
+            <Row className="row-search">
+                <Col span={12} order={1} className="col-search">
+                        <Search placeholder="input search text" allowClear onSearch={onSearch} style={{ width: 200 }} />
+
                 </Col>
             </Row>
 
@@ -58,16 +76,12 @@ function Main() {
             <Breadcrumb style={{ margin: '16px 0' }}>
                 <Breadcrumb.Item>Criadas Por mim</Breadcrumb.Item>
             </Breadcrumb>
-                <Switch checked={!loading} onChange={onChange} />
 
-                {/* <Row >
-                    <Col>
-                    </Col>
-                </Row> */}
-
-<Row>
-      <Col span={6} order={1}>
-      <Card
+            <Row>
+                {
+                    teamArray.map((item, index) => (
+                        <Col span={6} order={index} key={index}>
+                             <Card
                 style={{ width: 300, marginTop: 16 }}
                 actions={[
                     [<FaUsers /> , <span>46</span> ],
@@ -82,73 +96,38 @@ function Main() {
                     />
                 </Skeleton>
                 </Card>
-      </Col>
-      <Col span={6} order={2}>
-      <Card
-                style={{ width: 300, marginTop: 16 }}
-                actions={[
-                    <SettingOutlined key="setting" />,
-                    <EditOutlined key="edit" />,
-                    <EllipsisOutlined key="ellipsis" />,
-                ]}
-                >
-                <Skeleton loading={loading} avatar active>
-                    <Meta
-                    avatar={
-                        <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                    }
-                    title="Card title"
-                    description="This is the description"
-                    />
-                </Skeleton>
-                </Card>
-      </Col>
-      <Col span={6} order={3}>
-      <Card
-                style={{ width: 300, marginTop: 16 }}
-                actions={[
-                    <SettingOutlined key="setting" />,
-                    <EditOutlined key="edit" />,
-                    <EllipsisOutlined key="ellipsis" />,
-                ]}
-                >
-                <Skeleton loading={loading} avatar active>
-                    <Meta
-                    avatar={
-                        <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                    }
-                    title="Card title"
-                    description="This is the description"
-                    />
-                </Skeleton>
-                </Card>
-      </Col>
-      <Col span={6} order={4}>
-      <Card
-                style={{ width: 300, marginTop: 16 }}
-                actions={[
-                    <SettingOutlined key="setting" />,
-                    <EditOutlined key="edit" />,
-                    <EllipsisOutlined key="ellipsis" />,
-                ]}
-                >
-                <Skeleton loading={loading} avatar active>
-                    <Meta
-                    avatar={
-                        <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                    }
-                    title="Card title"
-                    description="This is the description"
-                    />
-                </Skeleton>
-                </Card>
-      </Col>
-    </Row>
+                        </Col>
+                    ))
+                }
+            </Row>
 
-    <Breadcrumb style={{ margin: '16px 0' }}>
+            <Breadcrumb style={{ margin: '16px 0' }}>
                 <Breadcrumb.Item>Convites de participação</Breadcrumb.Item>
             </Breadcrumb>
-                
+            
+            <Row>
+                {
+                    teamArray.map((item, index) => (
+                        <Col span={6} order={index} key={index}>
+                             <Card
+                style={{ width: 300, marginTop: 16 }}
+                actions={[
+                    [<FaUsers /> , <span>46</span> ],
+                    [<IoDocuments />,  <span>46</span>],
+                ]}
+                className="teams-card"
+                >
+                <Skeleton loading={loading} active>
+                    <Meta
+                    title="Card title"
+                    description="This is the description"
+                    />
+                </Skeleton>
+                </Card>
+                        </Col>
+                    ))
+                }
+            </Row>
 
             </div>
             </Content>
