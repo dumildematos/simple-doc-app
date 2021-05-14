@@ -1,11 +1,16 @@
 import React, {useState} from 'react';
 import { Layout, Menu, Breadcrumb,Input, Space, Skeleton, Switch, Card, Avatar, Row, Col, Slider, Divider , Button} from 'antd';
 import 'antd/dist/antd.css';
-import { EditOutlined, EllipsisOutlined, AudioOutlined , PlusOutlined } from '@ant-design/icons';
+import { EditOutlined, EllipsisOutlined, AudioOutlined , PlusOutlined, MenuUnfoldOutlined,
+    MenuFoldOutlined,
+    UserOutlined,
+    VideoCameraOutlined,
+    UploadOutlined, } from '@ant-design/icons';
 import { FaUsers } from 'react-icons/fa';
 import { IoDocuments } from "react-icons/io5";
 import Axious from 'axios';
-const { Header, Content, Footer } = Layout;
+
+const { Header, Sider, Content } = Layout;
 const { Meta } = Card;
 
 const { Search } = Input;
@@ -16,7 +21,11 @@ const { Search } = Input;
 function Main() {
     const [loading, setLoading] = useState({});
     const [teams, setTeams] = useState({});
+    const [toogleState,setToogle] = useState(false)
 
+    const toogleMenu = () => {
+        setToogle(!toogleState)
+    }
 
     const onChange = (checked) => {
         setLoading({loading: !checked})
@@ -44,7 +53,6 @@ function Main() {
         {id: 1, title: "Here", desc: "description"},
         {id: 1, title: "Here", desc: "description"},
         {id: 1, title: "Here", desc: "description"},
-        {id: 1, title: "Here", desc: "description"},
 
     ]
  
@@ -52,26 +60,42 @@ function Main() {
     console.log(teams.teams)
     return (
         <>
-        <Layout className="layout main-component">
-            <Header>
-            <div className="logo" />
-            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-                <Menu.Item key="1">nav 1</Menu.Item>
-                <Menu.Item key="2">nav 2</Menu.Item>
-                <Menu.Item key="3">nav 3</Menu.Item>
-            </Menu>
-            </Header>
-            <Content style={{ padding: '0 50px' }}>
-            <div className="site-layout-content">
-                
+<Layout>
+        <Sider trigger={null} collapsible collapsed={toogleState}>
+          <div className="logo-main" />
+          <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+            <Menu.Item key="1" icon={<UserOutlined />}>
+              nav 1
+            </Menu.Item>
+            <Menu.Item key="2" icon={<VideoCameraOutlined />}>
+              nav 2
+            </Menu.Item>
+            <Menu.Item key="3" icon={<UploadOutlined />}>
+              nav 3
+            </Menu.Item>
+          </Menu>
+        </Sider>
+        <Layout className="site-layout">
+          <Header className="site-layout-background" style={{ padding: 0 }}>
+            {React.createElement(toogleState ? MenuUnfoldOutlined : MenuFoldOutlined, {
+              className: 'trigger',
+              onClick: toogleMenu,
+            })}
+          </Header>
+          <Content
+            className="site-layout-background"
+            style={{
+              margin: '24px 16px',
+              padding: 24,
+              minHeight: 280,
+            }}
+          >
             <Row className="row-search">
                 <Col span={12} order={1} className="col-search">
                         <Search placeholder="input search text" allowClear onSearch={onSearch} style={{ width: 200 }} />
 
                 </Col>
             </Row>
-
-            <Divider style={{ borderWidth: 2 }} />
 
             <Breadcrumb style={{ margin: '16px 0' }}>
                 <Breadcrumb.Item>Criadas Por mim</Breadcrumb.Item>
@@ -100,7 +124,6 @@ function Main() {
                     ))
                 }
             </Row>
-
             <Breadcrumb style={{ margin: '16px 0' }}>
                 <Breadcrumb.Item>Convites de participação</Breadcrumb.Item>
             </Breadcrumb>
@@ -129,11 +152,10 @@ function Main() {
                 }
             </Row>
 
-            </div>
-            </Content>
-            <Button className="open-creat-team-modal" type="primary" shape="circle" icon={<PlusOutlined />} size="large" />
-            <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+          </Content>
+          <Button className="open-creat-team-modal" type="primary" shape="circle" icon={<PlusOutlined />} size="large" />
         </Layout>
+      </Layout>
         </>
     )
 }
